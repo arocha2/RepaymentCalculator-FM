@@ -6,12 +6,20 @@ export const RepaymentProvider = ({ children }) => {
   const [cuota, setCuota] = useState("");
   const [totalPayment, setTotalPayment] = useState("");
 
-  const handlePayment = ({ amount, term, rate }) => {
-    const result = (amount * term) / ((1 - (1 + term)) ^ -rate);
-    const total = amount * (term / 100) + amount;
+  const handlePayment = ({ amount, term, rate, type }) => {
+    const months = term * 12;
+    let monthlyPayment, subTotalPayment;
 
-    setCuota(new Intl.NumberFormat("es-MX").format(result.toFixed(2)));
-    setTotalPayment(new Intl.NumberFormat("es-MX").format(total));
+    if (type === "repayment") {
+      monthlyPayment = amount * rate;
+      subTotalPayment = monthlyPayment * months;
+    } else {
+      // interest-only
+      monthlyPayment = amount * rate;
+      subTotalPayment = monthlyPayment * months + amount;
+    }
+    setCuota(new Intl.NumberFormat("es-MX").format(monthlyPayment.toFixed(2)));
+    setTotalPayment(new Intl.NumberFormat("es-MX").format(subTotalPayment));
   };
 
   return (

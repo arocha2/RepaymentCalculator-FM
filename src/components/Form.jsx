@@ -32,10 +32,9 @@ export const Formulario = () => {
   const { setView, handlePayment } = useContext(RepaymentContext);
   //funcion submit se le pasa al hook de formik
   const onSubmit = () => {
-    console.log({ values });
     handlePayment(values);
     setView(false);
-    resetForm();
+    // resetForm();
   };
   // funcion para reset form
   const handleResetForm = () => {
