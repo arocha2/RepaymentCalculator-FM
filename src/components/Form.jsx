@@ -77,6 +77,7 @@ export const Formulario = () => {
         </button>
       </div>
       <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+        {/* amount  */}
         <div>
           <label htmlFor="amount" className="text-text-form text-md mb-2 block">
             Mortgage Amount
@@ -106,61 +107,65 @@ export const Formulario = () => {
             </div>
           )}
         </div>
-        <div>
-          <label htmlFor="term" className="text-text-form text-md mb-2 block">
-            Mortgage term
-          </label>
-          <div className="border hover:border-text-normal hover:cursor-pointer  border-text-form text-text-form rounded-md flex overflow-hidden">
-            <input
-              className="w-full px-4 hover:cursor-pointer"
-              type="text"
-              name="term"
-              id="term"
-              {...getFieldProps("term")}
-            />
-            <span
-              className={`${
-                touched.term && errors.term
-                  ? "bg-red-600 text-white"
-                  : "bg-cyan-100"
-              } px-4 py-2  font-semibold`}
-            >
-              years
-            </span>
-          </div>
-          {touched.term && errors.term && (
-            <div className="text-sm text-red-600 ml-2 absolute">
-              {errors.term}
+        {/*  term*/}
+        <div className="flex flex-col md:flex-row gap-4">
+          <div>
+            <label htmlFor="term" className="text-text-form text-md mb-2 block">
+              Mortgage term
+            </label>
+            <div className="border hover:border-text-normal hover:cursor-pointer  border-text-form text-text-form rounded-md flex overflow-hidden">
+              <input
+                className="w-full px-4 hover:cursor-pointer"
+                type="text"
+                name="term"
+                id="term"
+                {...getFieldProps("term")}
+              />
+              <span
+                className={`${
+                  touched.term && errors.term
+                    ? "bg-red-600 text-white"
+                    : "bg-cyan-100"
+                } px-4 py-2  font-semibold`}
+              >
+                years
+              </span>
             </div>
-          )}
-        </div>
-        <div>
-          <label htmlFor="rate" className="text-text-form text-md mb-2 block">
-            Interest Rate
-          </label>
-          <div className="border hover:border-text-normal  border-text-form text-text-form rounded-md flex overflow-hidden">
-            <input
-              className="w-full px-4 hover:cursor-pointer"
-              type="text"
-              name="rate"
-              id="rate"
-              {...getFieldProps("rate")}
-            />
-            <span
-              className={`${
-                touched.rate && errors.rate
-                  ? "bg-red-600 text-white"
-                  : "bg-cyan-100"
-              } px-4 py-2  font-semibold`}
-            >
-              %
-            </span>
+            {touched.term && errors.term && (
+              <div className="text-sm text-red-600 ml-2 absolute">
+                {errors.term}
+              </div>
+            )}
           </div>
-          {touched.rate && errors.rate && (
-            <div className="text-sm text-red-600 ml-2 absolute">
-              {errors.rate}
+          {/*  rate */}
+          <div>
+            <label htmlFor="rate" className="text-text-form text-md mb-2 block">
+              Interest Rate
+            </label>
+            <div className="border hover:border-text-normal  border-text-form text-text-form rounded-md flex overflow-hidden">
+              <input
+                className="w-full px-4 hover:cursor-pointer"
+                type="text"
+                name="rate"
+                id="rate"
+                {...getFieldProps("rate")}
+              />
+              <span
+                className={`${
+                  touched.rate && errors.rate
+                    ? "bg-red-600 text-white"
+                    : "bg-cyan-100"
+                } px-4 py-2  font-semibold`}
+              >
+                %
+              </span>
             </div>
-          )}
+            {touched.rate && errors.rate && (
+              <div className="text-sm text-red-600 ml-2 absolute">
+                {errors.rate}
+              </div>
+            )}
+          </div>
         </div>
         {/* radio buttons */}
         <div>
