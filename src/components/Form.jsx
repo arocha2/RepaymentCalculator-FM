@@ -29,10 +29,11 @@ const initialValues = {
 };
 // ------------------------------------------------------------------------>
 export const Formulario = () => {
-  const { setView } = useContext(RepaymentContext);
+  const { setView, handlePayment } = useContext(RepaymentContext);
   //funcion submit se le pasa al hook de formik
   const onSubmit = () => {
     console.log({ values });
+    handlePayment(values);
     setView(false);
     resetForm();
   };
@@ -65,7 +66,7 @@ export const Formulario = () => {
   // const handleType = (e) => (values.type = e.target.value);
 
   return (
-    <section className="p-6">
+    <section className="p-6 md:w-1/2 bg-white ">
       <div className="mb-8">
         <p className="font-semibold text-xl mb-1">Mortgage Calculator</p>
         <button
@@ -91,7 +92,7 @@ export const Formulario = () => {
               £
             </span>
             <input
-              className="w-full px-4"
+              className="w-full px-4 hover:cursor-pointer outline-none "
               type="text"
               name="amount"
               id="amount"
@@ -111,7 +112,7 @@ export const Formulario = () => {
           </label>
           <div className="border hover:border-text-normal hover:cursor-pointer  border-text-form text-text-form rounded-md flex overflow-hidden">
             <input
-              className="w-full px-4"
+              className="w-full px-4 hover:cursor-pointer"
               type="text"
               name="term"
               id="term"
@@ -137,9 +138,9 @@ export const Formulario = () => {
           <label htmlFor="rate" className="text-text-form text-md mb-2 block">
             Interest Rate
           </label>
-          <div className="border hover:border-text-normal hover:cursor-pointer  border-text-form text-text-form rounded-md flex overflow-hidden">
+          <div className="border hover:border-text-normal  border-text-form text-text-form rounded-md flex overflow-hidden">
             <input
-              className="w-full px-4"
+              className="w-full px-4 hover:cursor-pointer"
               type="text"
               name="rate"
               id="rate"
@@ -177,7 +178,7 @@ export const Formulario = () => {
             />
             <label
               htmlFor="one"
-              className="w-full ms-2 py-2 text-lg font-bold "
+              className="w-full ms-2 py-2 text-lg font-bold cursor-pointer"
             >
               Repayment
             </label>
@@ -193,7 +194,7 @@ export const Formulario = () => {
             />
             <label
               htmlFor="two"
-              className="w-full ms-2 py-2 text-lg font-bold  "
+              className="w-full ms-2 py-2 text-lg font-bold hover:cursor-pointer "
             >
               Interest Only
             </label>
