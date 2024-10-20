@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 //icons
 import calcIcon from "../assets/images/icon-calculator.svg";
+import { useContext } from "react";
+import { RepaymentContext } from "../context/RepaymentContext";
 
 //esquema de validacion de datos se le pasa al hook de formik
 const validationSchema = Yup.object({
@@ -11,11 +13,6 @@ const validationSchema = Yup.object({
     .required("this field is required"),
   term: Yup.number()
     .typeError("term must be a number")
-    .test(
-      "len",
-      "term must be a years valid 4 numbers",
-      (val) => val.toString().length == 4
-    )
     .required("this field is required"),
   rate: Yup.number()
     .typeError("amount must be a number")
@@ -32,10 +29,18 @@ const initialValues = {
 };
 // ------------------------------------------------------------------------>
 export const Formulario = () => {
+  const { setView } = useContext(RepaymentContext);
   //funcion submit se le pasa al hook de formik
   const onSubmit = () => {
     console.log({ values });
+    setView(false);
     resetForm();
+  };
+  // funcion para reset form
+  const handleResetForm = () => {
+    resetForm();
+    validateField();
+    setView(true);
   };
 
   // hook de formik para el manejo de formulario
@@ -49,6 +54,7 @@ export const Formulario = () => {
     handleChange,
     resetForm,
     getFieldProps,
+    validateField,
   } = useFormik({
     validationSchema,
     initialValues,
@@ -59,11 +65,11 @@ export const Formulario = () => {
   // const handleType = (e) => (values.type = e.target.value);
 
   return (
-    <section>
+    <section className="p-6">
       <div className="mb-8">
         <p className="font-semibold text-xl mb-1">Mortgage Calculator</p>
         <button
-          onClick={resetForm}
+          onClick={handleResetForm}
           className="text-sm text-text-form underline underline-offset-2"
         >
           Clear All
@@ -171,12 +177,12 @@ export const Formulario = () => {
             />
             <label
               htmlFor="one"
-              className="w-full ms-2 py-3 text-lg font-bold "
+              className="w-full ms-2 py-2 text-lg font-bold "
             >
               Repayment
             </label>
           </div>
-          <div className=" flex items-center ps-4 border border-text-form rounded-md text-text-normal ">
+          <div className="flex items-center ps-4 border border-text-form rounded-md text-text-normal ">
             <input
               type="radio"
               id="two"
@@ -187,7 +193,7 @@ export const Formulario = () => {
             />
             <label
               htmlFor="two"
-              className="w-full ms-2 py-3 text-lg font-bold  "
+              className="w-full ms-2 py-2 text-lg font-bold  "
             >
               Interest Only
             </label>
@@ -201,7 +207,7 @@ export const Formulario = () => {
         <button
           disabled={!isValid}
           type="submit"
-          className=" disabled:bg-gray-400 disabled:cursor-not-allowed bg-bg-button font-bold text-lg py-4 rounded-full flex items-center justify-center gap-4"
+          className=" disabled:bg-gray-400 disabled:cursor-not-allowed bg-bg-button font-bold text-lg py-3 rounded-full flex items-center justify-center gap-4"
         >
           <span>
             <img src={calcIcon} alt="icon" />

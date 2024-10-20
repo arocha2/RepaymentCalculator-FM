@@ -1,9 +1,9 @@
-import { Formulario } from "./components/Form";
+import { PageView } from "./components/PageView";
 
 export const App = () => {
   return (
-    <div className="p-6 font-jakarta text-text-normal">
-      <Formulario />
+    <div className=" font-jakarta text-text-normal">
+      <PageView />
     </div>
   );
 };
