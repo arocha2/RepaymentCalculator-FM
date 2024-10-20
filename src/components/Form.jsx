@@ -67,7 +67,7 @@ export const Formulario = () => {
 
   return (
     <section className="p-6 md:w-1/2 bg-white ">
-      <div className="mb-8">
+      <div className="mb-8 md:flex md:justify-between">
         <p className="font-semibold text-xl mb-1">Mortgage Calculator</p>
         <button
           onClick={handleResetForm}
